@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mystyles.css">
+    <title>Foundation</title>
+
+    <style>
+        /* Aanvullende aangepaste stijlen kunnen hier worden toegevoegd als dat nodig is */
+        .container {
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            width: 200px;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            margin-left: 200px;
+            padding-left: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .add-task-form {
+            margin-top: 20px;
+        }
+
+        .add-task-form input,
+        .add-task-form button {
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <div class="container">
+        <div class="grid-x">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="schedule.html"><i class="fa-regular fa-calendar-days"></i> schedule</a></li>
+                    <li><a href="subject.html"><i class="fa-solid fa-school"></i> subjects</a></li>
+                    <li><a href="progress.html"><i class="fa-solid fa-bars-progress"></i> Progress</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                    <!-- Add more navigation items as needed -->
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="container chart-title-container" style="max-width: 900px; margin-left: 200px;">
+        <h2>School begin tijden</h2>
+        <canvas id="lineChart" width="800" height="400"></canvas>
+    </div>
+</div>
+
+
+
+<style>
+
+
+    .chart-title-container {
+        text-align: center; 
+        margin-top: 20px;  
+    }
+
+    #lineChart {
+        margin-top: 20px;   
+    }
+</style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var lineChartData = {
+            labels: ['MA', 'DI', 'WO', 'DO', 'VR'],
+            datasets: [{
+                label: 'Dagen Begin tijd',
+                borderColor: 'rgba(200, 237, 0, 1)',
+                data: [11, 0, 9.5, 9.5, 9.5],
+                fill: false,
+            },
+            {
+                label: 'Dagen eind tijd',
+                borderColor: 'rgba(174, 0, 255, 0.54)',
+                data: [16.5, 0, 15, 15, 15],
+                fill: false,
+            }]
+        };
+
+        var lineChartConfig = {
+            type: 'line',
+            data: lineChartData,
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: ['MA', 'DI', 'WO', 'DO', 'VR'],
+                    },
+                    y: {
+                        beginAtZero: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Lijn Diagram',
+                        },
+                        grid: {
+                            display: false,
+                        },
+                        ticks: {
+                            stepSize: 1,
+                        },
+                    },
+                },
+            },
+        };
+
+        var lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), lineChartConfig);
+    </script>
+</body>
+
+</html>

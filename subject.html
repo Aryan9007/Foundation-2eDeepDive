@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mystyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation@6.6.3/dist/css/foundation.min.css">
+    <title>Foundation</title>
+
+    <style>
+        /* Custom styles */
+        .container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .sidebar {
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            width: 200px;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            margin-left: 200px;
+            padding-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chart-container {
+            max-width: 800px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <div class="container">
+        <!-- Navbar -->
+
+
+        <div class="grid-x">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="schedule.html"><i class="fa-regular fa-calendar-days"></i> Schedule</a></li>
+                    <li><a href="subject.html"><i class="fa-solid fa-school"></i> Subjects</a></li>
+                    <li><a href="progress.html"><i class="fa-solid fa-bars-progress"></i> Progress</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="chart-container">
+                    <h2>School Subjects</h2>
+                    <canvas id="pieChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var pieChartData = {
+            labels: ['Rekenen', 'Engels', 'Nederlands', 'Burgerschap', 'LOB'],
+            datasets: [{
+                data: [20, 20, 20, 30, 10],
+                backgroundColor: ['red', 'blue', 'green', 'orange', 'purple'],
+            }]
+        };
+
+        var pieChartConfig = {
+            type: 'pie',
+            data: pieChartData,
+        };
+
+        var pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), pieChartConfig);
+    </script>
+</body>
+
+</html>

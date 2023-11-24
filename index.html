@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mystyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.7/dist/css/foundation.min.css">
+    <title>Foundation</title>
+
+    <style>
+        /* Custom styles */
+        .container {
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            width: 200px;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            margin-left: 200px;
+            padding-left: 20px;
+        }
+
+        .todo-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .todo-table th,
+        .todo-table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .todo-table th {
+            background-color: #333;
+            color: white;
+        }
+
+        .todo-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .add-task-form {
+            margin-top: 20px;
+        }
+
+        .add-task-form input,
+        .add-task-form button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="grid-x">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar">
+ <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="schedule.html"><i class="fa-regular fa-calendar-days"></i> schedule</a></li>
+                    <li><a href="subject.html"><i class="fa-solid fa-school"></i> subjects</a></li>
+                    <li><a href="progress.html"><i class="fa-solid fa-bars-progress"></i> Progress</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                    <!-- Add more navigation items as needed -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container" style="max-width: 900px;">
+                <h2>To-Do List</h2>
+                <table class="todo-table">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Existing to-do list items... -->
+                        <tr>
+                            <td>HTML Beginner</td>
+                            <td>2023-09-23</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>JS Beginner</td>
+                            <td>2023-10-16</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>JS Advanced</td>
+                            <td>2023-12-10</td>
+                            <td>In Progress</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Add Task Form -->
+                <div class="add-task-form">
+                    <h3>Add a New Task</h3>
+                    <form id="taskForm">
+                        <label for="task">Task:</label>
+                        <input type="text" id="task" name="task" required>
+
+                        <label for="dueDate">Due Date:</label>
+                        <input type="date" id="dueDate" name="dueDate" required>
+
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" required>
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+
+                        <button type="button" onclick="addTask()">Add Task</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function addTask() {
+            var taskForm = document.getElementById('taskForm');
+            var taskTable = document.querySelector('.todo-table tbody');
+
+            var task = taskForm.task.value;
+            var dueDate = taskForm.dueDate.value;
+            var status = taskForm.status.value;
+
+            var newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${task}</td>
+                <td>${dueDate}</td>
+                <td>${status}</td>
+            `;
+
+            taskTable.appendChild(newRow);
+
+            // Clear the form fields after adding a task
+            taskForm.reset();
+        }
+    </script>
+</body>
+
+</html>
